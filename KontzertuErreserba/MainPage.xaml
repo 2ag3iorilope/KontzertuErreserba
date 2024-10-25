@@ -4,18 +4,89 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <StackLayout Padding="20">
-        <!--  Label para mostrar el estado de la conexión  -->
+        <!--  Estado de conexión  -->
         <Label
             x:Name="statusLabel"
             FontSize="18"
             HorizontalOptions="Center"
-            Text="Estado de la conexión" />
-
-        <!--  Botón para probar la conexión  -->
+            Text="Konexioaren estatua:" />
         <Button
             Clicked="OnConnectButtonClicked"
             HorizontalOptions="Center"
-            Text="Conectar a la Base de Datos" />
+            Text="KonektatuDatubasera" />
+
+        <!--  Interfaz de Reservas  -->
+        <Frame
+            Margin="0,20,0,0"
+            Padding="20"
+            BackgroundColor="White">
+            <Grid ColumnSpacing="15" RowSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,20"
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="Kontzertuen Erreserba" />
+
+                <Frame
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="10"
+                    BorderColor="LightGray">
+                    <VerticalStackLayout Spacing="10">
+                        <Label FontAttributes="Bold" Text="Herria" />
+                        <RadioButton
+                            Content="Madrid"
+                            GroupName="Cities"
+                            IsChecked="True" />
+                        <RadioButton Content="Barcelona" GroupName="Cities" />
+                        <RadioButton Content="Bilbao" GroupName="Cities" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Spacing="15">
+                    <Entry Placeholder="Izena" />
+                    <Entry Placeholder="Abizena" />
+                    <Entry Placeholder="DNI" />
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="Kantitatea:" VerticalOptions="Center" />
+                        <Entry
+                            HorizontalTextAlignment="Center"
+                            Text="1"
+                            WidthRequest="50" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Erreserbak: 1614"
+                    VerticalOptions="Center" />
+
+                <HorizontalStackLayout
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Spacing="10">
+                    <Button Text="Erreserbatu" WidthRequest="100" />
+                    <Button Text="Irten" WidthRequest="100" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
     </StackLayout>
 </ContentPage>
-
