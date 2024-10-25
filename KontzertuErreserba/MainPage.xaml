@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="KontzertuErreserba.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <StackLayout Padding="20">
+        <!--  Label para mostrar el estado de la conexión  -->
+        <Label
+            x:Name="statusLabel"
+            FontSize="18"
+            HorizontalOptions="Center"
+            Text="Estado de la conexión" />
+
+        <!--  Botón para probar la conexión  -->
+        <Button
+            Clicked="OnConnectButtonClicked"
+            HorizontalOptions="Center"
+            Text="Conectar a la Base de Datos" />
+    </StackLayout>
+</ContentPage>
+
