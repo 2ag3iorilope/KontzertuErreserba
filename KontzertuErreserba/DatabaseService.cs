@@ -21,11 +21,11 @@ namespace KontzertuErreserba
                     string database = connection.Database;
                     string server = connection.DataSource;
 
-                    return $"Conectado a la base de datosa '{database}' en el servidor '{server}'";
+                    return $"Konektatuta ondorengo datubasera: '{database}' ondorengo zerbitzarian '{server}'";
                 }
                 catch (Exception ex)
                 {
-                    return $"Error al conectar: {ex.Message}";
+                    return $"Errorea konektatzean: {ex.Message}";
                 }
             }
         }
