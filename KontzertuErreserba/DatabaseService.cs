@@ -21,7 +21,7 @@ namespace KontzertuErreserba
                     string database = connection.Database;
                     string server = connection.DataSource;
 
-                    return $"Conectado a la base de datos '{database}' en el servidor '{server}'";
+                    return $"Conectado a la base de datosa '{database}' en el servidor '{server}'";
                 }
                 catch (Exception ex)
                 {
