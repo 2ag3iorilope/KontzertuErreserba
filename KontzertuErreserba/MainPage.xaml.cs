@@ -87,6 +87,11 @@ namespace KontzertuErreserba
             return true;
         }
 
+        private void OnIrtenButtonClicked(object sender, EventArgs e)
+        {
+            Application.Current!.Quit();
+        }
+
 
     }
 }
