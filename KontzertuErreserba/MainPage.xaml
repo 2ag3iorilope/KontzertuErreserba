@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <StackLayout Padding="20">
-        <!--  Estado de conexión  -->
+
+
         <Label
             x:Name="statusLabel"
             FontSize="18"
@@ -15,7 +16,7 @@
             HorizontalOptions="Center"
             Text="KonektatuDatubasera" />
 
-        <!--  Interfaz de Reservas  -->
+
         <Frame
             Margin="0,20,0,0"
             Padding="20"
@@ -48,11 +49,18 @@
                     <VerticalStackLayout Spacing="10">
                         <Label FontAttributes="Bold" Text="Herria" />
                         <RadioButton
+                            CheckedChanged="OnCitySelected"
                             Content="Madrid"
                             GroupName="Cities"
                             IsChecked="True" />
-                        <RadioButton Content="Barcelona" GroupName="Cities" />
-                        <RadioButton Content="Bilbao" GroupName="Cities" />
+                        <RadioButton
+                            CheckedChanged="OnCitySelected"
+                            Content="Barcelona"
+                            GroupName="Cities" />
+                        <RadioButton
+                            CheckedChanged="OnCitySelected"
+                            Content="Bilbao"
+                            GroupName="Cities" />
                     </VerticalStackLayout>
                 </Frame>
 
@@ -60,19 +68,34 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Spacing="15">
-                    <Entry Placeholder="Izena" />
-                    <Entry Placeholder="Abizena" />
-                    <Entry Placeholder="DNI" />
+                    <Entry
+                        x:Name="IzenaEntry"
+                        Placeholder="Izena"
+                        TextChanged="OnEntryTextChanged" />
+                    <Entry
+                        x:Name="AbizenaEntry"
+                        Placeholder="Abizena"
+                        TextChanged="OnEntryTextChanged" />
+                    <Entry
+                        x:Name="DNIEntry"
+                        Placeholder="DNI"
+                        TextChanged="OnEntryTextChanged" />
                     <HorizontalStackLayout Spacing="10">
-                        <Label Text="Kantitatea:" VerticalOptions="Center" />
+                        <Label
+                            x:Name="Kantitatealabel"
+                            Text="Kantitatea:"
+                            VerticalOptions="Center" />
                         <Entry
+                            x:Name="KantitateaEntry"
                             HorizontalTextAlignment="Center"
                             Text="1"
+                            TextChanged="OnEntryTextChanged"
                             WidthRequest="50" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
 
                 <Label
+                    x:Name="reservasLabel"
                     Grid.Row="2"
                     Grid.Column="0"
                     Text="Erreserbak: 1614"
@@ -83,7 +106,10 @@
                     Grid.Column="1"
                     HorizontalOptions="End"
                     Spacing="10">
-                    <Button Text="Erreserbatu" WidthRequest="100" />
+                    <Button
+                        x:Name="ErreserbaBotoia"
+                        Text="Erreserbatu"
+                        WidthRequest="120" />
                     <Button Text="Irten" WidthRequest="100" />
                 </HorizontalStackLayout>
             </Grid>

@@ -1,4 +1,7 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using MySql.Data.MySqlClient;
 
 namespace KontzertuErreserba
 {
@@ -13,11 +16,58 @@ namespace KontzertuErreserba
 
         private async void OnConnectButtonClicked(object sender, EventArgs e)
         {
-            statusLabel.Text = "Conectando...";
+            statusLabel.Text = "Konektatzen...";
 
-            // Llama al método y muestra el resultado en el Label
+            
             string resultado = await _databaseService.ConectarBaseDatosAsync();
             statusLabel.Text = resultado;
         }
+
+
+        private async void OnCitySelected(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                var selectedCity = (sender as RadioButton)?.Content.ToString();
+                int reservas = await _databaseService.GetReservasCountAsync(selectedCity);
+                reservasLabel.Text = $"Erreserbak: {reservas}";
+            }
+        }
+
+        private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            var entry = sender as Entry;
+            if (entry == IzenaEntry || entry == AbizenaEntry)
+            {
+                if (!string.IsNullOrEmpty(entry.Text) && !IsTextAlphabetic(entry.Text))
+                {
+                
+                    entry.Text = e.OldTextValue;
+                }
+            }
+
+            bool isFormFilled = !string.IsNullOrWhiteSpace(IzenaEntry.Text) &&
+                        !string.IsNullOrWhiteSpace(AbizenaEntry.Text) &&
+                        !string.IsNullOrWhiteSpace(DNIEntry.Text) &&
+                        !string.IsNullOrWhiteSpace(KantitateaEntry.Text);
+
+
+            ErreserbaBotoia.IsEnabled = isFormFilled;
+        }
+
+        private bool IsTextAlphabetic(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!char.IsLetter(c))
+                    return false;
+            }
+            return true;
+        }
+
+
+
+
     }
 }

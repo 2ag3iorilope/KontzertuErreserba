@@ -29,5 +29,32 @@ namespace KontzertuErreserba
                 }
             }
         }
+
+
+        public async Task<int> GetReservasCountAsync(string city)
+        {
+            int reservas = 0;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(idErreserbak) FROM erreserbak inner join kontzertuak on Kontzertuak_idKontzertua = idKontzertua and Hiria = @City";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@City", city);
+
+                    try
+                    {
+                        await connection.OpenAsync();
+                        reservas = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    }
+                    catch (Exception)
+                    {
+                        
+                        throw;
+                    }
+                }
+            }
+            return reservas;
+        }
+
     }
 }
