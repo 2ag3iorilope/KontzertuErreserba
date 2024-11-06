@@ -45,7 +45,18 @@ namespace KontzertuErreserba
                 
                     entry.Text = e.OldTextValue;
                 }
+
             }
+            if (entry == KantitateaEntry)
+            {
+                if (!string.IsNullOrEmpty(entry.Text) && !IsTextNumeric(entry.Text))
+                {
+
+                    entry.Text = e.OldTextValue;
+                }
+
+            }
+
 
             bool isFormFilled = !string.IsNullOrWhiteSpace(IzenaEntry.Text) &&
                         !string.IsNullOrWhiteSpace(AbizenaEntry.Text) &&
@@ -66,7 +77,15 @@ namespace KontzertuErreserba
             return true;
         }
 
-
+        private bool IsTextNumeric(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c))
+                    return false;
+            }
+            return true;
+        }
 
 
     }

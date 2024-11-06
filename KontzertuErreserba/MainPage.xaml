@@ -108,6 +108,7 @@
                     Spacing="10">
                     <Button
                         x:Name="ErreserbaBotoia"
+                        IsEnabled="False"
                         Text="Erreserbatu"
                         WidthRequest="120" />
                     <Button Text="Irten" WidthRequest="100" />
