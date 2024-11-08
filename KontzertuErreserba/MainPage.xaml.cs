@@ -12,7 +12,15 @@ namespace KontzertuErreserba
         public MainPage()
         {
             InitializeComponent();
+            //SetWindowSize();
         }
+
+        void SetWindowSize()
+        {
+            var mainWindow = Application.Current?.MainPage as Page; 
+            mainWindow.WidthRequest = 800; 
+            mainWindow.HeightRequest = 600; 
+         }
 
         private async void OnConnectButtonClicked(object sender, EventArgs e)
         {

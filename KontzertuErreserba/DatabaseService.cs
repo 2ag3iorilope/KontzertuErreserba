@@ -6,7 +6,7 @@ namespace KontzertuErreserba
 {
     internal class DatabaseService
     {
-     
+
         private readonly string connectionString = "Server=localhost;Port=3306;Database=kontzertuerreserba;User Id=root;Password=mysql;";
 
         public async Task<string> ConectarBaseDatosAsync()
@@ -17,7 +17,7 @@ namespace KontzertuErreserba
                 {
                     await connection.OpenAsync();
 
-                 
+
                     string database = connection.Database;
                     string server = connection.DataSource;
 
@@ -48,7 +48,7 @@ namespace KontzertuErreserba
                     }
                     catch (Exception)
                     {
-                        
+
                         throw;
                     }
                 }

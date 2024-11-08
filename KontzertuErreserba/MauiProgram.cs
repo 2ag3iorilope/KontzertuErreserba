@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace KontzertuErreserba
 {
@@ -18,6 +19,10 @@ namespace KontzertuErreserba
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            // Customize the window
+           
+
 
             return builder.Build();
         }
