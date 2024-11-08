@@ -5,11 +5,14 @@
         public App()
         {
             InitializeComponent();
-
             MainPage = new AppShell();
-            //MainPage.HeightRequest = 500;
-            //MainPage.WidthRequest = 500;
+
         }
+        /// <summary>
+        /// Metodo honek CreateWindow metodoa gaindegiten du, aplikazioaren leihoaren tamaina egokitzeko.
+        /// </summary>
+        /// <param name="activationState">Aplikazioaren aktibazio egoera.</param>
+        /// <returns>Leihoa itzultzen du tamaina pertsonalizatua duela(Gure tamaina).</returns>
         protected override Window CreateWindow(IActivationState activationState)
         {
             var window = base.CreateWindow(activationState);

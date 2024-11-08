@@ -40,8 +40,6 @@ namespace KontzertuErreserba
             }
         }
 
-
-
         /// <summary>
         /// Hiri jakin bati lotutako erreserba-kopurua lortzen du.
         /// </summary>
