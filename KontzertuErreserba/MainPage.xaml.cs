@@ -15,6 +15,11 @@ namespace KontzertuErreserba
             //SetWindowSize();
         }
 
+        /// <summary>
+        /// Dnia-ren testua ladtu den konprobatzen duen metodoa, dni hau balidatzeko
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnEntrydniTextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender == DNIEntry)
@@ -22,6 +27,8 @@ namespace KontzertuErreserba
                 ValidateDNI(DNIEntry.Text);
             }
         }
+
+
         void SetWindowSize()
         {
             var mainWindow = Application.Current?.MainPage as Page;
@@ -29,6 +36,11 @@ namespace KontzertuErreserba
             mainWindow.HeightRequest = 600;
         }
 
+        /// <summary>
+        /// Konexioa egiteko botoiaren emtodoa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void OnConnectButtonClicked(object sender, EventArgs e)
         {
             statusLabel.Text = "Konektatzen...";
@@ -39,6 +51,11 @@ namespace KontzertuErreserba
         }
 
 
+        /// <summary>
+        /// Aukeratutako Herriaren  Erreserba kopurua lortzen duen metodoa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void OnCitySelected(object sender, CheckedChangedEventArgs e)
         {
             if (e.Value)
@@ -48,7 +65,12 @@ namespace KontzertuErreserba
                 reservasLabel.Text = $"Erreserbak: {reservas}";
             }
         }
-
+        /// <summary>
+        /// Testuko balioak gaizki sartuz gero testua konpontzen duen emtodoa
+        /// Erreserbatzeko botoia aktibatzen du eremu guztiak betetzean
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -82,6 +104,11 @@ namespace KontzertuErreserba
             ErreserbaBotoia.IsEnabled = isFormFilled;
         }
 
+        /// <summary>
+        /// Konrpobatu testua alfabetikoa den
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private bool IsTextAlphabetic(string text)
         {
             foreach (char c in text)
@@ -91,7 +118,11 @@ namespace KontzertuErreserba
             }
             return true;
         }
-
+        /// <summary>
+        /// Konprobatu testua zenbakiak diren
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         private bool IsTextNumeric(string text)
         {
             foreach (char c in text)
@@ -102,23 +133,36 @@ namespace KontzertuErreserba
             return true;
         }
 
+        /// <summary>
+        /// Aplikaziotik Irten
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnIrtenButtonClicked(object sender, EventArgs e)
         {
             Application.Current!.Quit();
         }
+
+        /// <summary>
+        /// Hautatukako herriaren ID-a lortzen du
+        /// </summary>
+        /// <returns> Herriaren id-a</returns>
         private int GetCityId()
         {
             if (MadridRadioButton.IsChecked) return 1;
             if (BarcelonaRadioButton.IsChecked) return 2;
             if (BilbaoRadioButton.IsChecked) return 3;
-            return 0; // Default in case no city is selected
+            return 0;
         }
-
+        /// <summary>
+        /// Dni-a balidatzeko metodoa
+        /// </summary>
+        /// <param name="dni"></param>
         private void ValidateDNI(string dni)
         {
             if (dni.Length < 9)
             {
-                // El DNI debe tener 8 números y 1 letra, en total 9 caracteres
+
                 DNIEntry.TextColor = Colors.Red;
                 statusLabel.Text = "DNI ez da zuzena";
                 return;
@@ -129,20 +173,20 @@ namespace KontzertuErreserba
 
             if (int.TryParse(dniNumberPart, out _) && char.IsLetter(dniLetter))
             {
-                // Verifica que la letra coincida con la calculada para el número
+
                 string letters = "TRWAGMYFPDXBNJZSQVHLCKE";
                 int index = int.Parse(dniNumberPart) % 23;
                 char correctLetter = letters[index];
 
                 if (char.ToUpper(dniLetter) == correctLetter)
                 {
-                    // DNI válido
+
                     DNIEntry.TextColor = Colors.Green;
                     statusLabel.Text = "DNI zuzena";
                 }
                 else
                 {
-                    // DNI inválido
+
                     DNIEntry.TextColor = Colors.Red;
                     statusLabel.Text = "DNI ez da zuzena";
                 }
@@ -155,26 +199,29 @@ namespace KontzertuErreserba
         }
 
 
+        /// <summary>
+        /// Erreserba gehitzko botoiaren metodoa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void OnErreserbaButtonClicked(object sender, EventArgs e)
         {
             string connectionString = "Server=localhost;Port=3306;Database=kontzertuerreserba;User Id=root;Password=mysql;";
-            int cityId = GetCityId();  // Esta función obtiene el ID del concierto según la ciudad seleccionada
+            int cityId = GetCityId();
             string izena = IzenaEntry.Text;
             string abizena = AbizenaEntry.Text;
             string dni = DNIEntry.Text;
             int kantitatea = int.Parse(KantitateaEntry.Text);
-
-            // Primero obtenemos el último idErreserbak
             string getLastIdQuery = "SELECT MAX(idErreserbak) FROM erreserbak";
+
 
             try
             {
-                int newId = 1;  // Si no hay registros, comenzamos desde 1
+                int newId = 1;
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
 
-                    // Obtener el último idErreserbak
                     using (MySqlCommand getIdCommand = new MySqlCommand(getLastIdQuery, connection))
                     {
                         var result = await getIdCommand.ExecuteScalarAsync();
@@ -184,7 +231,6 @@ namespace KontzertuErreserba
                         }
                     }
 
-                    // Ahora realizamos la inserción con el nuevo idErreserbak
                     string query = "INSERT INTO erreserbak (idErreserbak, DNI, Abizena, Izena, Kantitatea, Kontzertuak_idKontzertua) " +
                                    "VALUES (@idErreserbak, @dni, @abizena, @izena, @kantitatea, @concierto_id)";
 
@@ -198,7 +244,7 @@ namespace KontzertuErreserba
                         insertCommand.Parameters.AddWithValue("@concierto_id", cityId);
 
                         await insertCommand.ExecuteNonQueryAsync();
-                        reservasLabel.Text = "Erreserba eginda!";  // Confirmación de reserva
+                        reservasLabel.Text = "Erreserba eginda!";
                     }
                 }
             }
@@ -206,12 +252,8 @@ namespace KontzertuErreserba
             {
                 await DisplayAlert("Errorea", $"Erreserba ezin izan da burutu: {ex.Message}", "Ados");
             }
-
-
-
         }
 
 
     }
 }
-
