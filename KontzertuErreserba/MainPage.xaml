@@ -49,15 +49,18 @@
                     <VerticalStackLayout Spacing="10">
                         <Label FontAttributes="Bold" Text="Herria" />
                         <RadioButton
+                            x:Name="MadridRadioButton"
                             CheckedChanged="OnCitySelected"
                             Content="Madrid"
                             GroupName="Cities"
                             IsChecked="True" />
                         <RadioButton
+                            x:Name="BarcelonaRadioButton"
                             CheckedChanged="OnCitySelected"
                             Content="Barcelona"
                             GroupName="Cities" />
                         <RadioButton
+                            x:Name="BilbaoRadioButton"
                             CheckedChanged="OnCitySelected"
                             Content="Bilbao"
                             GroupName="Cities" />
@@ -79,7 +82,7 @@
                     <Entry
                         x:Name="DNIEntry"
                         Placeholder="DNI"
-                        TextChanged="OnEntryTextChanged" />
+                        TextChanged="OnEntrydniTextChanged" />
                     <HorizontalStackLayout Spacing="10">
                         <Label
                             x:Name="Kantitatealabel"
@@ -108,6 +111,7 @@
                     Spacing="10">
                     <Button
                         x:Name="ErreserbaBotoia"
+                        Clicked="OnErreserbaButtonClicked"
                         IsEnabled="False"
                         Text="Erreserbatu"
                         WidthRequest="120" />

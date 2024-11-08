@@ -7,8 +7,18 @@ namespace KontzertuErreserba
     internal class DatabaseService
     {
 
+        /// <summary>
+        /// Gure SQL konexioa.
+        /// </summary>
         private readonly string connectionString = "Server=localhost;Port=3306;Database=kontzertuerreserba;User Id=root;Password=mysql;";
 
+        /// <summary>
+        /// Datubasera Konektatzeko Metodoa
+        /// </summary>
+        /// <returns>
+        /// Gure datubasearea konexioa egin den eta zein datubasera konektatu garen erakusten du dena ondo joan bada 
+        /// edo errore mezu bat arazo bat egon bada
+        /// </returns>
         public async Task<string> ConectarBaseDatosAsync()
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -31,6 +41,14 @@ namespace KontzertuErreserba
         }
 
 
+
+        /// <summary>
+        /// Hiri jakin bati lotutako erreserba-kopurua lortzen du.
+        /// </summary>
+        /// <param name="city">Erreserbak kontatu nahi diren herria.</param>
+        /// <returns>
+        /// Zenbaki oso bat, zehaztutako hirirako aurkitutako erreserben kopurua adierazten duena.
+        /// </returns>
         public async Task<int> GetReservasCountAsync(string city)
         {
             int reservas = 0;
@@ -55,6 +73,7 @@ namespace KontzertuErreserba
             }
             return reservas;
         }
+
 
     }
 }
