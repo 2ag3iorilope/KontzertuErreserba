@@ -5,71 +5,56 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <StackLayout Padding="20">
 
-        <!-- ? Konexioaren egoera ikusteko Label bat -->
-        <Label
-            x:Name="statusLabel"
-            FontSize="18"
-            HorizontalOptions="Center"
-            Text="Konexioaren estatua:"/>
-        <!--  ? Konektatzeko botoia -->
-        <Button
-            Clicked="OnConnectButtonClicked"
-            HorizontalOptions="Center"
-            Text="KonektatuDatubasera"/>
-
-
         <Frame
             Margin="0,20,0,0"
             Padding="20"
             BackgroundColor="White">
-            <Grid ColumnSpacing="15"
-                  RowSpacing="15">
+            <Grid ColumnSpacing="15" RowSpacing="15">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- !  Aplikazioaren Tituloa-->
+                <!--  !  Aplikazioaren Tituloa  -->
                 <Label
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
                     Margin="0,0,0,20"
                     FontSize="20"
                     HorizontalOptions="Center"
-                    Text="Kontzertuen Erreserba"/>
+                    Text="Kontzertuen Erreserba" />
 
                 <Frame
                     Grid.Row="1"
                     Grid.Column="0"
                     Padding="10"
                     BorderColor="LightGray">
-                    <!--? Gure hiriak -->
+                    <!--  ? Gure hiriak  -->
 
                     <VerticalStackLayout Spacing="10">
-                        <Label FontAttributes="Bold"
-                               Text="Herria"/>
+                        <Label FontAttributes="Bold" Text="Herria" />
                         <RadioButton
                             x:Name="MadridRadioButton"
                             CheckedChanged="OnCitySelected"
                             Content="Madrid"
                             GroupName="Cities"
-                            IsChecked="True"/>
+                            IsChecked="True" />
                         <RadioButton
                             x:Name="BarcelonaRadioButton"
                             CheckedChanged="OnCitySelected"
                             Content="Barcelona"
-                            GroupName="Cities"/>
+                            GroupName="Cities" />
                         <RadioButton
                             x:Name="BilbaoRadioButton"
                             CheckedChanged="OnCitySelected"
                             Content="Bilbao"
-                            GroupName="Cities"/>
+                            GroupName="Cities" />
                     </VerticalStackLayout>
                 </Frame>
 
@@ -77,40 +62,40 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Spacing="15">
-                    <!-- ! Gure Datuen Sarrera -->
+                    <!--  ! Gure Datuen Sarrera  -->
                     <Entry
                         x:Name="IzenaEntry"
                         Placeholder="Izena"
-                        TextChanged="OnEntryTextChanged"/>
+                        TextChanged="OnEntryTextChanged" />
                     <Entry
                         x:Name="AbizenaEntry"
                         Placeholder="Abizena"
-                        TextChanged="OnEntryTextChanged"/>
+                        TextChanged="OnEntryTextChanged" />
                     <Entry
                         x:Name="DNIEntry"
                         Placeholder="DNI"
-                        TextChanged="OnEntrydniTextChanged"/>
+                        TextChanged="OnEntrydniTextChanged" />
                     <HorizontalStackLayout Spacing="10">
                         <Label
                             x:Name="Kantitatealabel"
                             Text="Kantitatea:"
-                            VerticalOptions="Center"/>
+                            VerticalOptions="Center" />
                         <Entry
                             x:Name="KantitateaEntry"
                             HorizontalTextAlignment="Center"
                             Text="1"
                             TextChanged="OnEntryTextChanged"
-                            WidthRequest="50"/>
+                            WidthRequest="50" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>
 
-                <!--  ? Erreserba Kopurua erakusteko label-a-->
+                <!--  ? Erreserba Kopurua erakusteko label-a  -->
                 <Label
                     x:Name="reservasLabel"
                     Grid.Row="2"
                     Grid.Column="0"
                     Text="Erreserbak:"
-                    VerticalOptions="Center"/>
+                    VerticalOptions="Center" />
 
                 <HorizontalStackLayout
                     Grid.Row="2"
@@ -118,18 +103,19 @@
                     HorizontalOptions="End"
                     Spacing="10">
 
-                    <!--? Erreserba Botoia -->
+                    <!--  ? Erreserba Botoia  -->
                     <Button
                         x:Name="ErreserbaBotoia"
                         Clicked="OnErreserbaButtonClicked"
                         IsEnabled="False"
                         Text="Erreserbatu"
-                        WidthRequest="120"/>
+                        WidthRequest="120" />
                     <Button
                         x:Name="IrtenButton"
+                        BackgroundColor="Red"
                         Clicked="OnIrtenButtonClicked"
                         Text="Irten"
-                        WidthRequest="100"/>
+                        WidthRequest="100" />
                 </HorizontalStackLayout>
             </Grid>
         </Frame>

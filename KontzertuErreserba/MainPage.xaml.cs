@@ -41,14 +41,7 @@ namespace KontzertuErreserba
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void OnConnectButtonClicked(object sender, EventArgs e)
-        {
-            statusLabel.Text = "Konektatzen...";
-
-
-            string resultado = await _databaseService.ConectarBaseDatosAsync();
-            statusLabel.Text = resultado;
-        }
+ 
 
 
         /// <summary>
@@ -102,6 +95,7 @@ namespace KontzertuErreserba
 
 
             ErreserbaBotoia.IsEnabled = isFormFilled;
+            
         }
 
         /// <summary>
